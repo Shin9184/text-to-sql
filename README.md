@@ -11,7 +11,6 @@ Amazon Bedrock의 생성형 AI 기능과 Athena, Glue, S3 등 주요 AWS 서비�
 - [실행 방법](#-실행-방법)
 
 ## 🎯 소개
-## 🎯 소개
 먼저, Glue, S3를 사용하여 DataLake 환경을 구성하였고, Amazon Bedrock과 Generative AI를 사용하여 사용자가 Streamlit APP(EC2)에서 자연어 질문을 통해 Amazon Athena를 사용하여 S3에 쿼리하는 방법을 정리하였습니다.
 해당 구성의 자세한 설명은 [velog](https://velog.io/@dongs52/AWS-Bedrock-Agent%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-Text-to-SQL-%EB%A7%8C%EB%93%A4%EA%B8%B0) 블로그에 정리를 하였습니다.
 
