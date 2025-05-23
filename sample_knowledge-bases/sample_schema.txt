@@ -1,0 +1,42 @@
+Table: customer
+Table Description: 해당 테이블은 샘플이며, ID, 이름, 나이, 성별, 이메일, 지역, 가입일, 활성화여부, 역할, 점수가 포함된 테이블입니다.
+
+Column: id
+Description: 사용자의 고유한 ID
+Summary: 예시 데이터 : "Philip387", "Colton907"
+
+Column: name
+Description: 사용자의 이름
+Summary: 예시 데이터 : "Denise Hall", "Jon Palmer"
+
+Column: age
+Description: 사용자의 나이
+Summary: 예시 데이터 : 43, 60
+
+Column: gender
+Description: 사용자의 성별
+Summary: 예시 데이터 : "F", "M"
+
+Column: email
+Description: 사용자의 이메일
+Summary: 예시 데이터 : "elainesmith@yahoo.com", "stephanie09@hotmail.com"
+
+Column: country
+Description: 사용자의 거주 지역
+Summary: 예시 데이터 : "South Korea", "Japan"
+
+Column: joindate
+Description: 가입 날짜
+Summary: 예시 데이터 : "2024-11-21", "2023-09-03"
+
+Column: isactive
+Description: 사용자의 활성화 여부
+Summary: 예시 데이터 : "TRUE", "FALSE"
+
+Column: role
+Description: 사용자의 역할
+Summary: 예시 데이터 : "Viewer", "Admin"
+
+Column: score
+Description: 사용자의 점수
+Summary: 예시 데이터 : 72.6, 90.5
