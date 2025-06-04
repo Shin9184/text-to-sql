@@ -9,6 +9,7 @@ Amazon Bedrock의 생성형 AI 기능과 Athena, Glue, S3 등 주요 AWS 서비�
 - [조건 사항](#-조건-사항)
 - [프로젝트 구조](#-프로젝트-구조)
 - [실행 방법](#-실행-방법)
+- [선택 사항](#-선택-사항)
 
 ## 🎯 소개
 먼저, Glue, S3를 사용하여 DataLake 환경을 구성하였고, Amazon Bedrock과 Generative AI를 사용하여 사용자가 Streamlit APP(EC2)에서 자연어 질문을 통해 Amazon Athena를 사용하여 S3에 쿼리하는 방법을 정리하였습니다.
@@ -42,6 +43,7 @@ Text-to-SQL 부분을 더 자세하게 풀어낸 아키텍처입니다.
  - **Bedrock**
     - Amazon Bedrock을 이용하기 위해 Bedrock configurations **모델 액세스를 활성화**해야 합니다.
     - 에이전트 지침을 잘못 설정한다면, 원하는 답변이 나오지 않을 수 있습니다.
+    - S3의 데이터를 지식 기반으로 사용 시 `json`은 지원하지 않습니다. `txt`,`pdf`,`md` 파일을 사용해야 합니다.
 
 ## 📁 프로젝트 구조
 ```tree
@@ -99,3 +101,8 @@ pandas==2.2.3
 # Streamlit 앱 백그라운드 실행, nohup은 터미널 종료 후에도 계속 실행
 nohup streamlit run app.py --server.port=8080
 ```
+
+## 🎰 선택 사항
+lambda-chunk 폴더는 커스텀 청킹을 위해 필요하며, 기본 청킹 사용 시에도 실제 서비스에서는 문제가 발생하지 않았습니다.
+다만, 쿼리의 정확성 및 신뢰성을 높이고, OpenSearch에서 필드 확인 시 가독성을 개선하기 위해 커스텀 청킹을 적용했습니다.
+소스파일은 sample_knowledge-bases 아래 폴더의 json 데이터가 저장된 S3를 사용했습니다.

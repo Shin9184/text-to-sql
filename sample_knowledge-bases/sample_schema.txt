@@ -4,39 +4,49 @@ Table Description: 해당 테이블은 샘플이며, ID, 이름, 나이, 성별,
 Column: id
 Description: 사용자의 고유한 ID
 Summary: 예시 데이터 : "Philip387", "Colton907"
+Type: STRING
 
 Column: name
 Description: 사용자의 이름
 Summary: 예시 데이터 : "Denise Hall", "Jon Palmer"
+Type: STRING
 
 Column: age
 Description: 사용자의 나이
 Summary: 예시 데이터 : 43, 60
+Type: INT
 
 Column: gender
 Description: 사용자의 성별
 Summary: 예시 데이터 : "F", "M"
+Type: STRING
 
 Column: email
 Description: 사용자의 이메일
 Summary: 예시 데이터 : "elainesmith@yahoo.com", "stephanie09@hotmail.com"
+Type: STRING
 
 Column: country
 Description: 사용자의 거주 지역
 Summary: 예시 데이터 : "South Korea", "Japan"
+Type: STRING
 
 Column: joindate
 Description: 가입 날짜
 Summary: 예시 데이터 : "2024-11-21", "2023-09-03"
+Type: STRING
 
 Column: isactive
 Description: 사용자의 활성화 여부
 Summary: 예시 데이터 : "TRUE", "FALSE"
+Type: STRING
 
 Column: role
 Description: 사용자의 역할
 Summary: 예시 데이터 : "Viewer", "Admin"
+Type: STRING
 
 Column: score
 Description: 사용자의 점수
 Summary: 예시 데이터 : 72.6, 90.5
+Type: DOUBLE

@@ -1,0 +1,86 @@
+[
+    {
+        "input": "테이블의 모든 정보",
+        "query": "SELECT * FROM customer;"
+    },
+    {
+        "input": "2023년 이후에 합류한 사용자의 모든 데이터",
+        "query": "SELECT * FROM customer WHERE joindate >= '2023-01-01';"
+    },
+    {
+        "input": "나이가 20살 이상 25 이하이고, 성별이 남자인 사용자",
+        "query": "SELECT * FROM customer WHERE age BETWEEN 20 AND 25 AND gender = 'M';"
+    },
+    {
+        "input": "최근 가입한 활성 사용자 중 상위 점수 보유자 5명",
+        "query": "SELECT id, name, score, joindate FROM customer WHERE isactive = 'TRUE' ORDER BY joindate DESC, score DESC LIMIT 5;"
+    },
+    {
+        "input": "국가별 평균 점수가 전체 평균보다 높은 국가",
+        "query": "SELECT country, AVG(CAST(score AS DOUBLE)) AS avg_score FROM customer GROUP BY country HAVING AVG(CAST(score AS DOUBLE)) > (SELECT AVG(CAST(score AS DOUBLE)) FROM customer);"
+    },
+    {
+        "input": "역할별 최고 점수를 받은 사용자",
+        "query": "SELECT c.* FROM customer c JOIN (SELECT role, MAX(CAST(score AS DOUBLE)) AS max_score FROM customer GROUP BY role) r ON c.role = r.role AND CAST(c.score AS DOUBLE) = r.max_score;"
+    },
+    {
+        "input": "각 국가에서 나이가 가장 많은 사용자",
+        "query": "SELECT * FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY country ORDER BY CAST(age AS INTEGER) DESC) AS rn FROM customer) t WHERE rn = 1;"
+    },
+    {
+        "input": "성별별 평균 점수, 평균 나이, 사용자 수",
+        "query": "SELECT gender, COUNT(*) AS total_users,ROUND(AVG(CAST(age AS DOUBLE)), 1) AS avg_age,ROUND(AVG(CAST(score AS DOUBLE)), 1) AS avg_score FROM customer GROUP BY gender;"
+    },
+    {
+        "input": "뷰어 역할 중 2023년 이후 가입하고 평균 점수 이상인 사용자",
+        "query": "SELECT * FROM customer WHERE role = 'Viewer' AND CAST(joindate AS DATE) >= DATE '2023-01-01' AND CAST(score AS DOUBLE) >= (SELECT AVG(CAST(score AS DOUBLE)) FROM customer);"
+    },
+    {
+        "input": "비활성 사용자 중 Admin 평균 점수보다 점수가 높은 사용자",
+        "query": "SELECT * FROM customer WHERE isactive = 'FALSE' AND CAST(score AS DOUBLE) > (SELECT AVG(CAST(score AS DOUBLE)) FROM customer WHERE role = 'Admin');"
+    },
+    {
+        "input": "최근 1년 내 가입자 중 국가별 평균 점수 1위 국가의 사용자들",
+        "query": "SELECT * FROM customer WHERE CAST(joindate AS DATE) >= current_date - interval '1' year AND country = (SELECT country FROM (SELECT country, AVG(CAST(score AS DOUBLE)) AS avg_score FROM customer WHERE CAST(joindate AS DATE) >= current_date - interval '1' year GROUP BY country ORDER BY avg_score DESC LIMIT 1));"
+    },
+    {
+        "input": "이메일이 yahoo.com 인 사용자에서 국가가 미국 또는 일본이며, 나이가 20~30 사이의 사용자중에 2024년에 가입한 사용자 데이터",
+        "query": "SELECT * FROM customer WHERE email LIKE '%@yahoo.com' AND country IN ('USA', 'Japan') AND age BETWEEN 20 AND 30 AND signup_date BETWEEN DATE '2024-01-01' AND DATE '2024-12-31';"
+    },
+    {
+        "input": "모든 역할별 최근 가입자 1명씩 조회",
+        "query": "SELECT * FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY role ORDER BY joindate DESC) AS rn FROM customer) sub WHERE rn = 1;"
+    },
+    {
+        "input": "국가별로 활성 사용자와 비활성 사용자 수 비교",
+        "query": "SELECT country, SUM(CASE WHEN isactive = 'TRUE' THEN 1 ELSE 0 END) AS active_users, SUM(CASE WHEN isactive = 'FALSE' THEN 1 ELSE 0 END) AS inactive_users FROM customer GROUP BY country;"
+    },
+    {
+        "input": "Admin 역할 중 평균보다 점수와 나이가 모두 높은 사용자",
+        "query": "SELECT * FROM customer WHERE role = 'Admin' AND CAST(score AS DOUBLE) > (SELECT AVG(CAST(score AS DOUBLE)) FROM customer WHERE role = 'Admin') AND CAST(age AS INTEGER) > (SELECT AVG(CAST(age AS DOUBLE)) FROM customer WHERE role = 'Admin');"
+    },
+    {
+        "input": "같은 이름(Name)이 중복되는 사용자 조회",
+        "query": "SELECT * FROM customer WHERE name IN (SELECT name FROM customer GROUP BY name HAVING COUNT(*) > 1);"
+    },
+    {
+        "input": "점수 순으로 상위 10%에 해당하는 사용자 조회",
+        "query": "SELECT * FROM (SELECT *, NTILE(10) OVER (ORDER BY CAST(score AS DOUBLE) DESC) AS score_bucket FROM customer) sub WHERE score_bucket = 1;"
+    },
+    {
+        "input": "각 성별에서 최근 6개월 이내 가입한 사용자들의 평균 점수",
+        "query": "SELECT gender, ROUND(AVG(CAST(score AS DOUBLE)), 1) AS avg_score FROM customer WHERE joindate >= current_date - interval '6' month GROUP BY gender;"
+    },
+    {
+        "input": "2023년에 가입한 사용자 중 국가별 최고 점수를 가진 사용자",
+        "query": "SELECT * FROM (SELECT *, RANK() OVER (PARTITION BY country ORDER BY CAST(score AS DOUBLE) DESC) AS rk FROM customer WHERE joindate BETWEEN DATE '2023-01-01' AND DATE '2023-12-31') sub WHERE rk = 1;"
+    },
+    {
+        "input": "전체 평균 점수보다 낮은 사용자 중 가장 오래된 가입자 5명",
+        "query": "SELECT * FROM customer WHERE CAST(score AS DOUBLE) < (SELECT AVG(CAST(score AS DOUBLE)) FROM customer) ORDER BY joindate ASC LIMIT 5;"
+    },
+    {
+        "input": "가장 많은 사용자를 보유한 역할과 그 사용자들의 평균 점수",
+        "query": "SELECT role, ROUND(AVG(CAST(score AS DOUBLE)), 1) AS avg_score FROM customer WHERE role = (SELECT role FROM customer GROUP BY role ORDER BY COUNT(*) DESC LIMIT 1) GROUP BY role;"
+    }
+]

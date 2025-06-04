@@ -1,0 +1,70 @@
+[
+    {
+        "customer": {
+            "table_name": "customer",
+            "table_desc": "해당 테이블은 샘플이며, ID, 이름, 나이, 성별, 이메일, 지역, 가입일, 활성화여부, 역할, 점수가 포함된 테이블",
+            "cols": [
+                {
+                    "col_name": "id",
+                    "col_desc": "사용자의 고유한 ID",
+                    "col_summary": "예시 데이터 : Philip387, Colton907",
+                    "col_type": "STRING"
+                },
+                {
+                    "col_name": "name",
+                    "col_desc": "사용자의 이름",
+                    "col_summary": "예시 데이터 : Denise Hall, Jon Palmer",
+                    "col_type": "STRING"
+                },
+                {
+                    "col_name": "age",
+                    "col_desc": "사용자의 나이",
+                    "col_summary": "예시 데이터 : 43, 60",
+                    "col_type": "INT"
+                },
+                {
+                    "col_name": "gender",
+                    "col_desc": "사용자의 성별",
+                    "col_summary": "예시 데이터 : M, F",
+                    "col_type": "STRING"
+                },
+                {
+                    "col_name": "email",
+                    "col_desc": "사용자의 이메일",
+                    "col_summary": "예시 데이터 : elainesmith@yahoo.com, pmorris@hotmail.com",
+                    "col_type": "STRING"
+                },
+                {
+                    "col_name": "country",
+                    "col_desc": "사용자의 거주 지역",
+                    "col_summary": "예시 데이터 : South Korea, Japan, UK",
+                    "col_type": "STRING"
+                },
+                {
+                    "col_name": "joindate",
+                    "col_desc": "가입 날짜",
+                    "col_summary": "예시 데이터 : 2024-11-21, 2025-05-20",
+                    "col_type": "STRING"
+                },
+                {
+                    "col_name": "isactive",
+                    "col_desc": "사용자의 활성화 여부",
+                    "col_summary": "예시 데이터 : TRUE, FALSE",
+                    "col_type": "STRING"
+                },
+                {
+                    "col_name": "role",
+                    "col_desc": "사용자의 역할",
+                    "col_summary": "예시 데이터 : Viewer, Admin, Manager, Editor, User",
+                    "col_type": "STRING"
+                },
+                {
+                    "col_name": "score",
+                    "col_desc": "사용자의 점수",
+                    "col_summary": "예시 데이터 : 72.6, 90.5",
+                    "col_type": "DOUBLE"
+                }
+            ]
+        }
+    }
+]
